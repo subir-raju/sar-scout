@@ -58,3 +58,24 @@ def test_task_rejects_invalid_transitions(
 
     with pytest.raises(ValueError, match="Cannot transition task"):
         transition_task(task, target)
+
+
+def test_transition_sets_the_update_time() -> None:
+    moment = datetime(2026, 3, 1, 12, 0, tzinfo=timezone.utc)
+    approved = transition_task(make_task(), TaskStatus.APPROVED, now=moment)
+
+    assert approved.updated_at == moment
+
+
+def test_approved_task_can_fail_when_submission_is_impossible() -> None:
+    approved = transition_task(make_task(), TaskStatus.APPROVED)
+
+    assert transition_task(
+        approved, TaskStatus.FAILED).status is TaskStatus.FAILED
+
+
+def test_task_submission_fields_have_safe_defaults() -> None:
+    task = make_task()
+
+    assert (task.attempts, task.auto, task.remote_id) == (0, False, None)
+    assert task.window_hours == 12

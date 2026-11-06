@@ -1,5 +1,3 @@
-"""Validated domain models and task lifecycle transitions."""
-
 from datetime import datetime, timezone
 from enum import Enum
 
@@ -7,7 +5,6 @@ from pydantic import BaseModel, Field
 
 
 class Event(BaseModel):
-    """A normalized event that may warrant SAR imaging."""
 
     id: str = Field(min_length=1)
     source: str = Field(min_length=1)
@@ -19,7 +16,6 @@ class Event(BaseModel):
 
 
 class TaskStatus(str, Enum):
-    """Lifecycle states for a proposed imaging task."""
 
     PROPOSED = "proposed"
     APPROVED = "approved"
@@ -30,7 +26,6 @@ class TaskStatus(str, Enum):
 
 
 class DecisionAction(str, Enum):
-    """Possible outcomes from an autonomy policy."""
 
     RECOMMEND = "recommend"
     AUTO_SUBMIT = "auto_submit"
@@ -39,7 +34,6 @@ class DecisionAction(str, Enum):
 
 
 class Task(BaseModel):
-    """A task request and its current lifecycle state."""
 
     id: str = Field(min_length=1)
     event_id: str = Field(min_length=1)
@@ -47,10 +41,18 @@ class Task(BaseModel):
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc)
     )
+    updated_at: datetime = Field(
+        default_factory=lambda: datetime.now(timezone.utc)
+    )
+    score: float = 0.0
+    reason: str = ""
+    auto: bool = False
+    attempts: int = Field(default=0, ge=0)
+    window_hours: int = Field(default=12, ge=1)
+    remote_id: str | None = None
 
 
 class Decision(BaseModel):
-    """An explainable policy decision for an event."""
 
     event_id: str = Field(min_length=1)
     action: DecisionAction
@@ -60,7 +62,7 @@ class Decision(BaseModel):
 
 _ALLOWED_TRANSITIONS: dict[TaskStatus, frozenset[TaskStatus]] = {
     TaskStatus.PROPOSED: frozenset({TaskStatus.APPROVED, TaskStatus.CANCELLED}),
-    TaskStatus.APPROVED: frozenset({TaskStatus.SUBMITTED, TaskStatus.CANCELLED}),
+    TaskStatus.APPROVED: frozenset({TaskStatus.SUBMITTED, TaskStatus.FAILED, TaskStatus.CANCELLED}),
     TaskStatus.SUBMITTED: frozenset(
         {TaskStatus.FULFILLED, TaskStatus.FAILED, TaskStatus.CANCELLED}
     ),
@@ -70,8 +72,9 @@ _ALLOWED_TRANSITIONS: dict[TaskStatus, frozenset[TaskStatus]] = {
 }
 
 
-def transition_task(task: Task, target: TaskStatus) -> Task:
-    """Return a copy of ``task`` in ``target`` if that transition is allowed."""
+def transition_task(task: Task, target: TaskStatus, *, now: datetime | None = None) -> Task:
     if target not in _ALLOWED_TRANSITIONS[task.status]:
-        raise ValueError(f"Cannot transition task from {task.status.value} to {target.value}")
-    return task.model_copy(update={"status": target})
+        raise ValueError(
+            f"Cannot transition task from {task.status.value} to {target.value}")
+    timestamp = now or datetime.now(timezone.utc)
+    return task.model_copy(update={"status": target, "updated_at": timestamp})
