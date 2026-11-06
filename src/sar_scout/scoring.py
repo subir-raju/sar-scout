@@ -1,5 +1,3 @@
-"""Explainable value score: how much is a fresh SAR image of this event worth right now?"""
-
 import math
 from collections.abc import Sequence
 from dataclasses import dataclass

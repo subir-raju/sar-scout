@@ -1,0 +1,16 @@
+# Autonomy policy: what the system may do WITHOUT a human.
+#   level 0: recommend only. Every proposal waits for a human.
+#   level 1: auto-submit only events scoring >= auto_min_score, up to auto_daily_cap per UTC day.
+#   level 2: auto-submit anything >= min_score, up to auto_daily_cap per UTC day.
+# Deny zones are refused at every level.
+level = 1
+min_score = 0.5
+auto_min_score = 3.0
+auto_daily_cap = 3
+allow_hazards = ["earthquake", "flood"]
+
+[[deny_zones]]
+name = "example-restricted-zone"   
+latitude = 0.0
+longitude = 0.0
+radius_km = 50.0
