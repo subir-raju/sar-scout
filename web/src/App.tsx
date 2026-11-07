@@ -3,6 +3,7 @@ import { Footer, Header, Hero, Section } from "./components/Chrome";
 import { Playground } from "./components/Playground";
 import { PolicyPanel } from "./components/PolicyPanel";
 import { Workflow } from "./components/Workflow";
+import { Ledger } from "./components/Ledger";
 import { emptyDay } from "./lib/day";
 import type { Day } from "./lib/day";
 import { DEFAULT_POLICY } from "./lib/scenarios";
@@ -37,6 +38,13 @@ export default function App() {
           lede="Nine made-up events arrive one after another. Each one goes through the same score and rulebook. When it says to ask a person, you are the person. Change a limit above and send the next event to see it bite."
         >
           <Workflow policy={policy} day={day} onChange={setDay} />
+        </Section>
+                <Section
+          id="log"
+          title="The audit log"
+          lede="Every decision, and every answer from a person, is written to a log that cannot be quietly changed. Try to cheat it."
+        >
+          <Ledger entries={day.entries} />
         </Section>
       </main>
       <Footer />
