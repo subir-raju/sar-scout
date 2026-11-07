@@ -196,3 +196,153 @@ a {
     padding: 40px 0;
   }
 }
+
+/* ---------- buttons and form controls ---------- */
+.btn {
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+}
+.btn:hover:not(:disabled) {
+  background: var(--ink);
+  color: #fff;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn--primary {
+  background: var(--night);
+  border-color: var(--night);
+  color: #fff;
+}
+.btn--primary:hover:not(:disabled) {
+  background: var(--night-2);
+}
+.btn--small {
+  padding: 5px 11px;
+  font-size: 0.88rem;
+}
+.btn--yes {
+  border-color: var(--auto-ink);
+  color: var(--auto-ink);
+}
+.btn--yes:hover:not(:disabled) {
+  background: var(--auto-ink);
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+  font-weight: 600;
+}
+.field output {
+  font-family: var(--mono);
+}
+.field input[type="range"] {
+  width: 100%;
+  accent-color: var(--night);
+}
+.field select {
+  font: inherit;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+.fine {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+legend {
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+/* ---------- the limits ---------- */
+.policy {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 32px;
+  align-items: start;
+}
+.policy-controls {
+  display: grid;
+  gap: 20px;
+}
+.level {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.level.is-on {
+  border-color: var(--night);
+  box-shadow: inset 3px 0 0 var(--auto);
+}
+.level input {
+  margin-top: 5px;
+}
+.checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+}
+.checks legend {
+  flex-basis: 100%;
+}
+.check-one {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.policy-card {
+  background: var(--night);
+  color: #e8eef2;
+  padding: 24px;
+  border-radius: 12px;
+  display: grid;
+  gap: 14px;
+  position: sticky;
+  top: 72px;
+}
+.policy-card h3 {
+  font-size: 1.25rem;
+}
+.policy-card .btn {
+  border-color: #6c8596;
+  color: #e8eef2;
+  justify-self: start;
+}
+.policy-card .btn:hover {
+  background: #e8eef2;
+  color: var(--night);
+}
+
+@media (max-width: 760px) {
+  .policy {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .policy-card {
+    position: static;
+  }
+}
