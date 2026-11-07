@@ -466,3 +466,77 @@ legend {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ---------- events ---------- */
+.day {
+  display: grid;
+  gap: 16px;
+}
+.day-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.counter {
+  margin-left: auto;
+}
+.cards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 14px;
+}
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top-width: 6px;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+.card--auto_submit {
+  border-top-color: var(--auto);
+}
+.card--request_approval,
+.card--recommend {
+  border-top-color: var(--ask);
+}
+.card--deny {
+  border-top-color: var(--refuse);
+}
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.card-top h3 {
+  font-size: 1.1rem;
+}
+.card-what {
+  font-weight: 600;
+}
+.status {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.status--ordered {
+  color: var(--auto-ink);
+}
+.status--waiting {
+  color: var(--ask-ink);
+}
+.status--refused,
+.status--declined {
+  color: var(--refuse-ink);
+}
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
