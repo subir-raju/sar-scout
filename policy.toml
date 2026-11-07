@@ -4,8 +4,8 @@
 #   level 2: auto-submit anything >= min_score, up to auto_daily_cap per UTC day.
 # Deny zones are refused at every level.
 level = 1
-min_score = 0.5
-auto_min_score = 3.0
+min_score = 1.0
+auto_min_score = 2.0
 auto_daily_cap = 3
 allow_hazards = ["earthquake", "flood"]
 
