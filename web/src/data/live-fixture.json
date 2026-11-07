@@ -1,0 +1,582 @@
+[
+ {
+  "event": {
+   "id": "tokyo",
+   "hazard": "earthquake",
+   "latitude": 35.7,
+   "longitude": 139.7,
+   "severity": 5,
+   "observed_at": "2026-06-01T10:00:00+00:00"
+  },
+  "policy": {
+   "level": 1,
+   "min_score": 1.0,
+   "auto_min_score": 2.0,
+   "auto_daily_cap": 3,
+   "allow_hazards": [
+    "earthquake",
+    "flood"
+   ],
+   "deny_zones": [
+    {
+     "name": "example-restricted-zone",
+     "latitude": 0.0,
+     "longitude": 0.0,
+     "radius_km": 50.0
+    }
+   ]
+  },
+  "result": {
+   "duplicate": false,
+   "decided_at": "2026-06-01T12:00:00Z",
+   "auto_used_today": 0,
+   "images_considered": [],
+   "score": 7.673515656873105,
+   "decision": {
+    "event_id": "tokyo",
+    "action": "auto_submit",
+    "reason": "score 7.67 >= 2.0, within daily cap",
+    "policy_level": 1
+   },
+   "task": {
+    "id": "task-tokyo",
+    "event_id": "tokyo",
+    "status": "fulfilled",
+    "created_at": "2026-06-01T12:00:00Z",
+    "updated_at": "2026-11-07T23:53:35.905269Z",
+    "score": 7.673515656873105,
+    "reason": "imagery ready",
+    "auto": true,
+    "attempts": 2,
+    "window_hours": 24,
+    "remote_id": "mock-d045ddb4d3b6",
+    "event": {
+     "id": "tokyo",
+     "source": "web",
+     "hazard": "earthquake",
+     "latitude": 35.7,
+     "longitude": 139.7,
+     "severity": 5,
+     "observed_at": "2026-06-01T10:00:00Z"
+    }
+   },
+   "summary": {
+    "fulfilled": 1
+   }
+  }
+ },
+ {
+  "event": {
+   "id": "tokyo-again",
+   "hazard": "earthquake",
+   "latitude": 35.9,
+   "longitude": 139.5,
+   "severity": 5,
+   "observed_at": "2026-06-01T10:00:00+00:00"
+  },
+  "policy": {
+   "level": 1,
+   "min_score": 1.0,
+   "auto_min_score": 2.0,
+   "auto_daily_cap": 3,
+   "allow_hazards": [
+    "earthquake",
+    "flood"
+   ],
+   "deny_zones": [
+    {
+     "name": "example-restricted-zone",
+     "latitude": 0.0,
+     "longitude": 0.0,
+     "radius_km": 50.0
+    }
+   ]
+  },
+  "result": {
+   "duplicate": false,
+   "decided_at": "2026-06-01T12:00:00Z",
+   "auto_used_today": 1,
+   "images_considered": [
+    {
+     "latitude": 35.7,
+     "longitude": 139.7,
+     "taken_at": "2026-11-07T23:53:35.905269Z"
+    }
+   ],
+   "score": 1.534703131374621,
+   "decision": {
+    "event_id": "tokyo-again",
+    "action": "request_approval",
+    "reason": "score 1.53 below auto threshold 2.0",
+    "policy_level": 1
+   },
+   "task": {
+    "id": "task-tokyo-again",
+    "event_id": "tokyo-again",
+    "status": "proposed",
+    "created_at": "2026-06-01T12:00:00Z",
+    "updated_at": "2026-06-01T12:00:00Z",
+    "score": 1.534703131374621,
+    "reason": "score 1.53 below auto threshold 2.0",
+    "auto": false,
+    "attempts": 0,
+    "window_hours": 12,
+    "remote_id": null,
+    "event": {
+     "id": "tokyo-again",
+     "source": "web",
+     "hazard": "earthquake",
+     "latitude": 35.9,
+     "longitude": 139.5,
+     "severity": 5,
+     "observed_at": "2026-06-01T10:00:00Z"
+    }
+   },
+   "summary": {
+    "fulfilled": 1,
+    "proposed": 1
+   }
+  }
+ },
+ {
+  "event": {
+   "id": "dhaka",
+   "hazard": "flood",
+   "latitude": 23.8,
+   "longitude": 90.4,
+   "severity": 3,
+   "observed_at": "2026-06-01T06:00:00+00:00"
+  },
+  "policy": {
+   "level": 1,
+   "min_score": 1.0,
+   "auto_min_score": 2.0,
+   "auto_daily_cap": 3,
+   "allow_hazards": [
+    "earthquake",
+    "flood"
+   ],
+   "deny_zones": [
+    {
+     "name": "example-restricted-zone",
+     "latitude": 0.0,
+     "longitude": 0.0,
+     "radius_km": 50.0
+    }
+   ]
+  },
+  "result": {
+   "duplicate": false,
+   "decided_at": "2026-06-01T12:00:00Z",
+   "auto_used_today": 1,
+   "images_considered": [
+    {
+     "latitude": 35.7,
+     "longitude": 139.7,
+     "taken_at": "2026-11-07T23:53:35.905269Z"
+    }
+   ],
+   "score": 2.294491946719948,
+   "decision": {
+    "event_id": "dhaka",
+    "action": "auto_submit",
+    "reason": "score 2.29 >= 2.0, within daily cap",
+    "policy_level": 1
+   },
+   "task": {
+    "id": "task-dhaka",
+    "event_id": "dhaka",
+    "status": "fulfilled",
+    "created_at": "2026-06-01T12:00:00Z",
+    "updated_at": "2026-11-07T23:53:35.908039Z",
+    "score": 2.294491946719948,
+    "reason": "imagery ready",
+    "auto": true,
+    "attempts": 2,
+    "window_hours": 24,
+    "remote_id": "mock-4a87abfeccd1",
+    "event": {
+     "id": "dhaka",
+     "source": "web",
+     "hazard": "flood",
+     "latitude": 23.8,
+     "longitude": 90.4,
+     "severity": 3,
+     "observed_at": "2026-06-01T06:00:00Z"
+    }
+   },
+   "summary": {
+    "fulfilled": 2,
+    "proposed": 1
+   }
+  }
+ },
+ {
+  "event": {
+   "id": "jakarta",
+   "hazard": "flood",
+   "latitude": -6.2,
+   "longitude": 106.8,
+   "severity": 4,
+   "observed_at": "2026-05-31T06:00:00+00:00"
+  },
+  "policy": {
+   "level": 1,
+   "min_score": 1.0,
+   "auto_min_score": 2.0,
+   "auto_daily_cap": 3,
+   "allow_hazards": [
+    "earthquake",
+    "flood"
+   ],
+   "deny_zones": [
+    {
+     "name": "example-restricted-zone",
+     "latitude": 0.0,
+     "longitude": 0.0,
+     "radius_km": 50.0
+    }
+   ]
+  },
+  "result": {
+   "duplicate": false,
+   "decided_at": "2026-06-01T12:00:00Z",
+   "auto_used_today": 2,
+   "images_considered": [
+    {
+     "latitude": 35.7,
+     "longitude": 139.7,
+     "taken_at": "2026-11-07T23:53:35.905269Z"
+    },
+    {
+     "latitude": 23.8,
+     "longitude": 90.4,
+     "taken_at": "2026-11-07T23:53:35.908039Z"
+    }
+   ],
+   "score": 2.7833594282987497,
+   "decision": {
+    "event_id": "jakarta",
+    "action": "auto_submit",
+    "reason": "score 2.78 >= 2.0, within daily cap",
+    "policy_level": 1
+   },
+   "task": {
+    "id": "task-jakarta",
+    "event_id": "jakarta",
+    "status": "fulfilled",
+    "created_at": "2026-06-01T12:00:00Z",
+    "updated_at": "2026-11-07T23:53:35.909687Z",
+    "score": 2.7833594282987497,
+    "reason": "imagery ready",
+    "auto": true,
+    "attempts": 2,
+    "window_hours": 24,
+    "remote_id": "mock-aaf202fbe800",
+    "event": {
+     "id": "jakarta",
+     "source": "web",
+     "hazard": "flood",
+     "latitude": -6.2,
+     "longitude": 106.8,
+     "severity": 4,
+     "observed_at": "2026-05-31T06:00:00Z"
+    }
+   },
+   "summary": {
+    "fulfilled": 3,
+    "proposed": 1
+   }
+  }
+ },
+ {
+  "event": {
+   "id": "santiago",
+   "hazard": "earthquake",
+   "latitude": -33.4,
+   "longitude": -70.6,
+   "severity": 5,
+   "observed_at": "2026-06-01T11:00:00+00:00"
+  },
+  "policy": {
+   "level": 1,
+   "min_score": 1.0,
+   "auto_min_score": 2.0,
+   "auto_daily_cap": 3,
+   "allow_hazards": [
+    "earthquake",
+    "flood"
+   ],
+   "deny_zones": [
+    {
+     "name": "example-restricted-zone",
+     "latitude": 0.0,
+     "longitude": 0.0,
+     "radius_km": 50.0
+    }
+   ]
+  },
+  "result": {
+   "duplicate": false,
+   "decided_at": "2026-06-01T12:00:00Z",
+   "auto_used_today": 3,
+   "images_considered": [
+    {
+     "latitude": 35.7,
+     "longitude": 139.7,
+     "taken_at": "2026-11-07T23:53:35.905269Z"
+    },
+    {
+     "latitude": 23.8,
+     "longitude": 90.4,
+     "taken_at": "2026-11-07T23:53:35.908039Z"
+    },
+    {
+     "latitude": -6.2,
+     "longitude": 106.8,
+     "taken_at": "2026-11-07T23:53:35.909687Z"
+    }
+   ],
+   "score": 7.835057450649921,
+   "decision": {
+    "event_id": "santiago",
+    "action": "request_approval",
+    "reason": "daily auto cap 3 reached",
+    "policy_level": 1
+   },
+   "task": {
+    "id": "task-santiago",
+    "event_id": "santiago",
+    "status": "proposed",
+    "created_at": "2026-06-01T12:00:00Z",
+    "updated_at": "2026-06-01T12:00:00Z",
+    "score": 7.835057450649921,
+    "reason": "daily auto cap 3 reached",
+    "auto": false,
+    "attempts": 0,
+    "window_hours": 12,
+    "remote_id": null,
+    "event": {
+     "id": "santiago",
+     "source": "web",
+     "hazard": "earthquake",
+     "latitude": -33.4,
+     "longitude": -70.6,
+     "severity": 5,
+     "observed_at": "2026-06-01T11:00:00Z"
+    }
+   },
+   "summary": {
+    "fulfilled": 3,
+    "proposed": 2
+   }
+  }
+ },
+ {
+  "event": {
+   "id": "istanbul",
+   "hazard": "wildfire",
+   "latitude": 41.0,
+   "longitude": 28.9,
+   "severity": 4,
+   "observed_at": "2026-06-01T09:00:00+00:00"
+  },
+  "policy": {
+   "level": 1,
+   "min_score": 1.0,
+   "auto_min_score": 2.0,
+   "auto_daily_cap": 3,
+   "allow_hazards": [
+    "earthquake",
+    "flood"
+   ],
+   "deny_zones": [
+    {
+     "name": "example-restricted-zone",
+     "latitude": 0.0,
+     "longitude": 0.0,
+     "radius_km": 50.0
+    }
+   ]
+  },
+  "result": {
+   "duplicate": false,
+   "decided_at": "2026-06-01T12:00:00Z",
+   "auto_used_today": 3,
+   "images_considered": [
+    {
+     "latitude": 35.7,
+     "longitude": 139.7,
+     "taken_at": "2026-11-07T23:53:35.905269Z"
+    },
+    {
+     "latitude": 23.8,
+     "longitude": 90.4,
+     "taken_at": "2026-11-07T23:53:35.908039Z"
+    },
+    {
+     "latitude": -6.2,
+     "longitude": 106.8,
+     "taken_at": "2026-11-07T23:53:35.909687Z"
+    }
+   ],
+   "score": 3.0061218010031228,
+   "decision": {
+    "event_id": "istanbul",
+    "action": "request_approval",
+    "reason": "hazard 'wildfire' is not allow-listed",
+    "policy_level": 1
+   },
+   "task": {
+    "id": "task-istanbul",
+    "event_id": "istanbul",
+    "status": "proposed",
+    "created_at": "2026-06-01T12:00:00Z",
+    "updated_at": "2026-06-01T12:00:00Z",
+    "score": 3.0061218010031228,
+    "reason": "hazard 'wildfire' is not allow-listed",
+    "auto": false,
+    "attempts": 0,
+    "window_hours": 12,
+    "remote_id": null,
+    "event": {
+     "id": "istanbul",
+     "source": "web",
+     "hazard": "wildfire",
+     "latitude": 41.0,
+     "longitude": 28.9,
+     "severity": 4,
+     "observed_at": "2026-06-01T09:00:00Z"
+    }
+   },
+   "summary": {
+    "fulfilled": 3,
+    "proposed": 3
+   }
+  }
+ },
+ {
+  "event": {
+   "id": "quiet",
+   "hazard": "earthquake",
+   "latitude": -20.0,
+   "longitude": -70.0,
+   "severity": 1,
+   "observed_at": "2026-06-01T07:00:00+00:00"
+  },
+  "policy": {
+   "level": 1,
+   "min_score": 1.0,
+   "auto_min_score": 2.0,
+   "auto_daily_cap": 3,
+   "allow_hazards": [
+    "earthquake",
+    "flood"
+   ],
+   "deny_zones": [
+    {
+     "name": "example-restricted-zone",
+     "latitude": 0.0,
+     "longitude": 0.0,
+     "radius_km": 50.0
+    }
+   ]
+  },
+  "result": {
+   "duplicate": false,
+   "decided_at": "2026-06-01T12:00:00Z",
+   "auto_used_today": 3,
+   "images_considered": [
+    {
+     "latitude": 35.7,
+     "longitude": 139.7,
+     "taken_at": "2026-11-07T23:53:35.905269Z"
+    },
+    {
+     "latitude": 23.8,
+     "longitude": 90.4,
+     "taken_at": "2026-11-07T23:53:35.908039Z"
+    },
+    {
+     "latitude": -6.2,
+     "longitude": 106.8,
+     "taken_at": "2026-11-07T23:53:35.909687Z"
+    }
+   ],
+   "score": 0.4505375528606453,
+   "decision": {
+    "event_id": "quiet",
+    "action": "deny",
+    "reason": "score 0.45 below minimum 1.0",
+    "policy_level": 1
+   },
+   "task": null,
+   "summary": {
+    "fulfilled": 3,
+    "proposed": 3
+   }
+  }
+ },
+ {
+  "event": {
+   "id": "restricted",
+   "hazard": "earthquake",
+   "latitude": 0.1,
+   "longitude": 0.1,
+   "severity": 5,
+   "observed_at": "2026-06-01T11:00:00+00:00"
+  },
+  "policy": {
+   "level": 1,
+   "min_score": 1.0,
+   "auto_min_score": 2.0,
+   "auto_daily_cap": 3,
+   "allow_hazards": [
+    "earthquake",
+    "flood"
+   ],
+   "deny_zones": [
+    {
+     "name": "example-restricted-zone",
+     "latitude": 0.0,
+     "longitude": 0.0,
+     "radius_km": 50.0
+    }
+   ]
+  },
+  "result": {
+   "duplicate": false,
+   "decided_at": "2026-06-01T12:00:00Z",
+   "auto_used_today": 3,
+   "images_considered": [
+    {
+     "latitude": 35.7,
+     "longitude": 139.7,
+     "taken_at": "2026-11-07T23:53:35.905269Z"
+    },
+    {
+     "latitude": 23.8,
+     "longitude": 90.4,
+     "taken_at": "2026-11-07T23:53:35.908039Z"
+    },
+    {
+     "latitude": -6.2,
+     "longitude": 106.8,
+     "taken_at": "2026-11-07T23:53:35.909687Z"
+    }
+   ],
+   "score": 7.835057450649921,
+   "decision": {
+    "event_id": "restricted",
+    "action": "deny",
+    "reason": "inside deny zone 'example-restricted-zone'",
+    "policy_level": 1
+   },
+   "task": null,
+   "summary": {
+    "fulfilled": 3,
+    "proposed": 3
+   }
+  }
+ }
+]
