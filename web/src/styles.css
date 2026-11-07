@@ -1,0 +1,33 @@
+:root {
+  --paper: #e8edef;
+  --ink: #14232e;
+  --auto: #1fb5a6;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font:
+    16px/1.55 system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+.starter {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 64px 16px;
+}
+.starter button {
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+.starter button:hover {
+  background: var(--ink);
+  color: #fff;
+}
