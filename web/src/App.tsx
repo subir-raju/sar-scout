@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { Footer, Header, Hero, Section } from "./components/Chrome";
 
 export default function App() {
-  const [clicks, setClicks] = useState(0);
   return (
-    <main className="starter">
-      <h1>sar-scout</h1>
-      <p>The React app is running. Edit src/App.tsx and this page updates by itself.</p>
-      <button type="button" onClick={() => setClicks(clicks + 1)}>
-        Clicked {clicks} times
-      </button>
-    </main>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Section id="limits" title="The limits" lede="Placeholder: the rulebook goes here.">
+          <p className="empty">Coming in the next commits.</p>
+        </Section>
+      </main>
+      <Footer />
+    </>
   );
 }
