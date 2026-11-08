@@ -4,8 +4,7 @@ import type { AuditEntry, AuditRecord } from "../lib/audit";
 
 type Tamper = { kind: "edit" | "delete"; index: number } | null;
 
-/* What a dishonest person might do to the stored log. The real entries are never touched:
-   this builds the altered copy that gets checked. */
+
 function altered(entries: AuditEntry[], tamper: Tamper): AuditEntry[] {
   if (!tamper || tamper.index >= entries.length) return entries;
   if (tamper.kind === "delete") return entries.filter((_, i) => i !== tamper.index);
@@ -35,7 +34,7 @@ export function Ledger({ entries }: { entries: AuditEntry[] }) {
   const index = Math.min(pick, Math.max(0, entries.length - 1));
 
   if (entries.length === 0) {
-    return <p className="empty">The log is empty. Send an event in the section above and its decision is written here.</p>;
+    return <p className="empty"></p>;
   }
 
   return (
@@ -43,11 +42,11 @@ export function Ledger({ entries }: { entries: AuditEntry[] }) {
       <div className={`seal ${bad === -1 ? "seal--ok" : "seal--bad"}`} role="status">
         {bad === -1
           ? `Chain intact: all ${shown.length} entries check out.`
-          : `Chain broken at entry ${bad + 1}. Everything from there on can no longer be trusted.`}
+          : `Chain broken at entry ${bad + 1}.`}
       </div>
 
       <div className="tamper">
-        <label className="field">Entry to tamper with
+        <label className="field">
           <select value={index} onChange={(e) => setPick(Number(e.target.value))}>
             {entries.map((e, i) => <option key={e.hash} value={i}>#{i + 1}  {describe(e.record)}</option>)}
           </select>
@@ -68,11 +67,7 @@ export function Ledger({ entries }: { entries: AuditEntry[] }) {
         ))}
       </ol>
 
-      <p className="fine">
-        Each entry stores a SHA-256 fingerprint of its own contents plus the fingerprint before it. Change one
-        entry and its fingerprint no longer matches; delete one and the next entry points at something that
-        is gone. The Python program uses the same method, and the tests check that both produce identical fingerprints.
-      </p>
+  
     </div>
   );
 }

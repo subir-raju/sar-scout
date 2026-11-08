@@ -150,18 +150,12 @@ function LiveSection({ api, policy }: { api: Api; policy: Policy }) {
   return (
     <section className="block" id="live" aria-labelledby="h-live">
       <div className="wrap">
-        <h2 id="h-live">Now run it on the real thing</h2>
-        <p className="lede">
-          Everything above runs inside this page, in TypeScript. This panel sends an event to the actual Python
-          program on a server. It scores the event, applies the limits you set above, stores a task and writes a
-          sealed audit log. Then the page checks its own answer against the server's.
-        </p>
-
+   
         <p className="live-status" role="status">
           {dot}
-          {phase === "checking" && "Connecting to the backend. The first request can take a few seconds."}
-          {phase === "online" && `Connected to the Python backend, version ${health?.version}. The satellite service behind it is a mock.`}
-          {phase === "offline" && "The backend is not answering right now. The rest of the page does not need it."}
+          {phase === "checking" && "Connecting to the backend."}
+          {phase === "online" && `Connected to the Python backend, version ${health?.version}.`}
+          {phase === "offline" && "The backend is not answering right now."}
           {phase === "offline" && <button type="button" className="btn btn--small" onClick={() => void check()}>Try again</button>}
         </p>
 

@@ -16,14 +16,14 @@ export function StatusChip({ status }: { status: ServerStatus }) {
 function explain(task: ServerTask): string {
   switch (task.status) {
     case "proposed":
-      return "The limits say a person has to decide. Nothing is ordered until you do.";
+      return "You have to decide now.";
     case "approved":
     case "submitted":
-      return "Ordered from the mock satellite service. The page checks again every few seconds.";
+      return "Ordered from the satellite service. The page checks again every few seconds.";
     case "fulfilled":
       return task.attempts > 1
-        ? `The service refused the first request, so the system retried with a wider window of ${task.window_hours} hours. It was accepted.`
-        : "The mock service reports the image is ready.";
+        ? `The service refused the first request. The system will try again with a wider window of ${task.window_hours} hours.`
+        : "The service reports the image is ready.";
     case "failed":
       return task.reason;
     case "cancelled":

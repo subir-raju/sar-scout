@@ -44,7 +44,7 @@ export function Compare({ mine, result }: { mine: BrowserAnswer; result: EventRe
         <p className="badge badge--ok">Same answer</p>
       ) : (
         <p className="badge badge--bad">
-          Different answers. The two copies should never disagree, so this is a bug.
+          Different answers.
         </p>
       )}
     </div>

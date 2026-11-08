@@ -16,37 +16,39 @@ export default function App() {
 
   return (
     <>
-      <Header />
+     <Header showLog={day.entries.length > 0} />
       <main>
         <Hero />
         <Section
           id="limits"
           title="The limits"
-          lede="This is the rulebook, the same fields as policy.toml in the Python project. Change anything: the next two sections use whatever you set here."
+          lede=""
         >
           <PolicyPanel policy={policy} onChange={setPolicy} />
         </Section>
                 <Section
           id="try"
           title="Try one event"
-          lede="Describe an event and see how it is scored, then which of the seven checks decides what happens. Move the sliders and the answer follows."
+          lede=""
         >
           <Playground policy={policy} />
         </Section>
                 <Section
           id="day"
           title="A day of events"
-          lede="Nine made-up events arrive one after another. Each one goes through the same score and rulebook. When it says to ask a person, you are the person. Change a limit above and send the next event to see it bite."
+          lede=""
         >
           <Workflow policy={policy} day={day} onChange={setDay} />
         </Section>
-        <Section
-          id="log"
-          title="The audit log"
-          lede="Every decision, and every answer from a person, is written to a log that cannot be quietly changed. Try to cheat it."
-        >
-          <Ledger entries={day.entries} />
-        </Section>
+       {day.entries.length > 0 && (
+  <Section
+    id="log"
+    title="The audit log"
+    lede="Every decision, and every answer from a person, is written to a log that cannot be quietly changed."
+  >
+    <Ledger entries={day.entries} />
+  </Section>
+)}
         <Live policy={policy} />
       </main>
       <Footer />

@@ -23,7 +23,7 @@ export function Logo() {
   );
 }
 
-export function Header() {
+export function Header({ showLog = true }: { showLog?: boolean }) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   return (
@@ -38,7 +38,9 @@ export function Header() {
           {open ? "Close" : "Menu"}
         </button>
         <nav id="site-nav" aria-label="Sections" className={open ? "is-open" : ""}>
-          {SECTIONS.map((s) => <a key={s.id} href={`#${s.id}`} onClick={close}>{s.label}</a>)}
+          {SECTIONS.filter((s) => showLog || s.id !== "log").map((s) => (
+  <a key={s.id} href={`#${s.id}`} onClick={close}>{s.label}</a>
+))}
           <a className="nav-code" href={REPO_URL} target="_blank" rel="noreferrer">Code</a>
         </nav>
       </div>
@@ -78,8 +80,8 @@ export function Hero() {
         <div className="hero-text">
           <h1>Which satellite image should be ordered first?</h1>
           <p className="hero-lede">
-            After an earthquake or a flood, many places need a radar image and only a few can have one today.
-            sar-scout scores each event, then follows a written rulebook: order it alone, ask a person, or say no.
+            After a natural disaster, many places need a radar image.
+            Sar-Scout scores each event, then follows a written rulebook: order it alone, ask a person, or say no to order the image.
           </p>
           <ul className="legend" aria-label="The three kinds of answer">
             <li><span className="swatch swatch--auto" />Orders it alone</li>
@@ -119,8 +121,7 @@ export function Footer() {
       <div className="wrap foot-in">
         <span className="brand brand--foot"><Logo /><span className="brand-name">sar<i>·</i>scout</span></span>
         <p>
-          Built by {AUTHOR}. The events are made up and the satellite service is a mock: nothing here
-          can order a real image. <a href={REPO_URL} target="_blank" rel="noreferrer">Read the code</a>.
+          Built by {AUTHOR}. <a href={REPO_URL} target="_blank" rel="noreferrer">Read the code</a>.
         </p>
       </div>
     </footer>

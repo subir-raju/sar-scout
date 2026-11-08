@@ -9,7 +9,7 @@ const LEVELS = [
   { value: 2, name: "Level 2", text: "Orders alone anything above the minimum." },
 ] as const;
 
-/* The rulebook in one sentence, written for someone who has not seen the code. */
+
 export function summarize(p: Policy): string {
   const refuse = `Anything scoring under ${p.min_score} is refused.`;
   const cap_ = `At most ${p.auto_daily_cap} automatic orders a day.`;
@@ -33,7 +33,7 @@ export function PolicyPanel({ policy, onChange }: { policy: Policy; onChange: (n
     <div className="policy">
       <div className="policy-controls">
         <fieldset className="levels">
-          <legend>How much may it do alone?</legend>
+          <legend>How much may I do alone?</legend>
           {LEVELS.map((l) => (
             <label key={l.value} className={`level ${policy.level === l.value ? "is-on" : ""}`}>
               <input type="radio" name="level" checked={policy.level === l.value} onChange={() => set({ level: l.value })} />
@@ -72,7 +72,7 @@ export function PolicyPanel({ policy, onChange }: { policy: Policy; onChange: (n
       <aside className="policy-card" aria-live="polite">
         <h3>In plain words</h3>
         <p>{summarize(policy)}</p>
-        <button type="button" className="btn" onClick={() => onChange(DEFAULT_POLICY)}>Back to policy.toml values</button>
+        <button type="button" className="btn" onClick={() => onChange(DEFAULT_POLICY)}>Back to default values</button>
       </aside>
     </div>
   );
