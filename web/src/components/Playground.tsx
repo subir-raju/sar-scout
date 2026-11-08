@@ -80,18 +80,7 @@ export function Playground({ policy }: { policy: Policy }) {
         </label>
       </form>
 
-      <div className="try-out" aria-live="polite">
-        <ul className="factors">
-          <Bar label="Severity" value={parts.severity} max={8} shown={`× ${parts.severity}`}
-            note="Doubles with every step up: severity 3 counts twice as much as 2." />
-          <Bar label="Radar suits this event" value={parts.suitability} max={1.3} shown={`× ${parts.suitability}`}
-            note="A judgement call. Radar sees through cloud, so floods score highest." />
-          <Bar label="Freshness" value={parts.freshness} max={1} shown={`× ${parts.freshness.toFixed(2)}`}
-            note="Halves roughly every 33 hours. Old news is worth less." />
-          <Bar label="Not imaged already" value={parts.stale} max={1} shown={`× ${parts.stale}`}
-            note="A recent image of the same area cuts the score to a fifth." />
-        </ul>
-
+          <div className="try-out" aria-live="polite">
         <div className={`result result--${decision.action}`}>
           <div className="result-top">
             <span className="score">{parts.total.toFixed(2)}</span>
@@ -100,13 +89,31 @@ export function Playground({ policy }: { policy: Policy }) {
           <p>{decision.reason}</p>
         </div>
 
-        <ol className="rules">
-          {rules.map((text, i) => {
-            const n = i + 1;
-            const state = n < decision.rule ? "passed" : n === decision.rule ? "decided" : "skipped";
-            return <li key={n} className={`rule rule--${state}`}>{text}</li>;
-          })}
-        </ol>
+        <div className="try-detail">
+          <div>
+            <h3 className="mini">How the score is built</h3>
+            <ul className="factors">
+              <Bar label="Severity" value={parts.severity} max={8} shown={`× ${parts.severity}`}
+                note="Doubles with every step up: severity 3 counts twice as much as 2." />
+              <Bar label="Radar suits this event" value={parts.suitability} max={1.3} shown={`× ${parts.suitability}`}
+                note="A judgement call. Radar sees through cloud, so floods score highest." />
+              <Bar label="Freshness" value={parts.freshness} max={1} shown={`× ${parts.freshness.toFixed(2)}`}
+                note="Halves roughly every 33 hours. Old news is worth less." />
+              <Bar label="Not imaged already" value={parts.stale} max={1} shown={`× ${parts.stale}`}
+                note="A recent image of the same area cuts the score to a fifth." />
+            </ul>
+          </div>
+          <div>
+            <h3 className="mini">The seven checks, in order</h3>
+            <ol className="rules">
+              {rules.map((text, i) => {
+                const n = i + 1;
+                const state = n < decision.rule ? "passed" : n === decision.rule ? "decided" : "skipped";
+                return <li key={n} className={`rule rule--${state}`}>{text}</li>;
+              })}
+            </ol>
+          </div>
+        </div>
       </div>
     </div>
   );
