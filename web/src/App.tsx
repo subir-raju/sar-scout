@@ -44,7 +44,7 @@ export default function App() {
   <Section
     id="log"
     title="The audit log"
-    lede="Every decision, and every answer from a person, is written to a log that cannot be quietly changed."
+    lede="Every decision, and every answer from a person, is written to the log."
   >
     <Ledger entries={day.entries} />
   </Section>

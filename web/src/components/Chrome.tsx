@@ -52,7 +52,7 @@ export function Header({ showLog = true }: { showLog?: boolean }) {
 function Radar() {
   return (
     <svg className="radar" viewBox="0 0 400 400" role="img"
-      aria-label="A radar screen with three dots: teal for orders it alone, amber for asks a person, rose for says no">
+      aria-label="A radar screen with three dots">
       <defs>
         <linearGradient id="sweep-fill" x1="0" y1="1" x2="1" y2="0">
           <stop offset="0" stopColor="#1fb5a6" stopOpacity="0" />

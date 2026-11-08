@@ -36,7 +36,7 @@ function where(choice: string, policy: Policy) {
   return PLACES[Number(index)] ?? PLACES[0];
 }
 
-/* A short fingerprint of where every task stands, to notice when something moved. */
+
 const progress = (list: ServerTask[]) => list.map((t) => `${t.id}:${t.status}`).join(",");
 
 /* A readable name for an event the page no longer remembers sending. */
@@ -85,12 +85,12 @@ function LiveSection({ api, policy }: { api: Api; policy: Policy }) {
     }
   }, [check]);
 
-  // Pick up where this browser left off, if its sandbox is still there.
+
   useEffect(() => {
     if (phase === "online") refresh().catch(() => undefined);
   }, [phase, refresh]);
 
-  // While something is on its way to the satellite service, ask for news every few seconds.
+ 
   const waiting = tasks.some((t) => t.status === "approved" || t.status === "submitted");
   useEffect(() => {
     if (phase !== "online" || !waiting) return;
@@ -102,7 +102,7 @@ function LiveSection({ api, policy }: { api: Api; policy: Policy }) {
         setTasks(list.tasks);
         if (changed) setAudit(await api.audit(8)); // the log only grows when a task moves on
       } catch {
-        /* the next round will try again */
+    
       }
     }, 2500);
     return () => clearInterval(timer);
@@ -112,7 +112,7 @@ function LiveSection({ api, policy }: { api: Api; policy: Policy }) {
     const known = labels.current.get(eventId);
     if (known) return known;
     const event = tasks.find((t) => t.event_id === eventId)?.event;
-    return event ? nameFor(event, policy) : "an earlier event"; // e.g. after a page reload
+    return event ? nameFor(event, policy) : "an earlier event"; 
   };
   const labelOfTask = (task: ServerTask) => `${labelOfEvent(task.event_id)}, ${task.event?.hazard ?? ""} ${task.event?.severity ?? ""}`;
 

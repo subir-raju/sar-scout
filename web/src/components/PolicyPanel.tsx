@@ -15,7 +15,7 @@ export function summarize(p: Policy): string {
   const cap_ = `At most ${p.auto_daily_cap} automatic orders a day.`;
   if (p.level === 0) return `${refuse} Nothing is ordered without a person.`;
   const from = p.level === 1 ? p.auto_min_score : p.min_score;
-  return `${refuse} From ${from} up it orders alone, if the kind of event is on the list. ${cap_} Everything else waits for a person.`;
+  return `${refuse} From ${from} up it orders alone, if the kind of event is on the list. ${cap_}.`;
 }
 
 export function PolicyPanel({ policy, onChange }: { policy: Policy; onChange: (next: Policy) => void }) {

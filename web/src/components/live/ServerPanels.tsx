@@ -105,7 +105,7 @@ export function AuditPanel({ audit, labelOf }: { audit: AuditView | null; labelO
         )}
       </div>
       {rows.length === 0 ? (
-        <p className="empty">Every decision and every step after it is written here, each entry sealed with the one before.</p>
+        <p className="empty">Every decision and every step after it is written here.</p>
       ) : (
         <ul className="audit-list">
           {rows.map((entry) => (
