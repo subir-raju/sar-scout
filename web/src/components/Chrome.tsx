@@ -80,7 +80,6 @@ export function Hero() {
           <p className="hero-lede">
             After an earthquake or a flood, many places need a radar image and only a few can have one today.
             sar-scout scores each event, then follows a written rulebook: order it alone, ask a person, or say no.
-            Every rule below runs in your browser, so you can change it and watch the answer move.
           </p>
           <ul className="legend" aria-label="The three kinds of answer">
             <li><span className="swatch swatch--auto" />Orders it alone</li>
