@@ -4,6 +4,7 @@ import { Playground } from "./components/Playground";
 import { PolicyPanel } from "./components/PolicyPanel";
 import { Workflow } from "./components/Workflow";
 import { Ledger } from "./components/Ledger";
+import { Live } from "./components/live/Live";
 import { emptyDay } from "./lib/day";
 import type { Day } from "./lib/day";
 import { DEFAULT_POLICY } from "./lib/scenarios";
@@ -39,13 +40,14 @@ export default function App() {
         >
           <Workflow policy={policy} day={day} onChange={setDay} />
         </Section>
-                <Section
+        <Section
           id="log"
           title="The audit log"
           lede="Every decision, and every answer from a person, is written to a log that cannot be quietly changed. Try to cheat it."
         >
           <Ledger entries={day.entries} />
         </Section>
+        <Live policy={policy} />
       </main>
       <Footer />
     </>

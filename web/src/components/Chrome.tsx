@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { liveApi } from "../lib/api";
 import { AUTHOR, REPO_URL } from "../config";
 
 const SECTIONS = [
@@ -6,6 +7,7 @@ const SECTIONS = [
   { id: "try", label: "Try an event" },
   { id: "day", label: "A day of events" },
   { id: "log", label: "Audit log" },
+  ...(liveApi ? [{ id: "live", label: "Live backend" }] : []),
 ];
 
 export function Header() {
